@@ -10,9 +10,9 @@ let pwLength;
 // Functions
 // Configure password generation inputs
 function configPassword() {
-  // const pwCharTypes = configPasswordCharacters();
-  // console.log(pwCharTypes); // testing
+  const pwCharTypes = configPasswordCharacters();
   const pwLength = configPasswordLength();
+  console.log(pwCharTypes); // testing
   console.log(pwLength); // testing
 }
 
@@ -35,7 +35,7 @@ function configPasswordCharacters() {
     !includeSymbols
   ) {
     alert(
-      "Must select at least 1 password character type to generate a password."
+      "Must select at least 1 password character type from prompts to generate a password"
     );
     pwCharType = configPasswordCharacters();
   } else {
