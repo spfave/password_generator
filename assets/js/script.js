@@ -4,20 +4,18 @@ const lettersUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 const numbers = "012346789".split("");
 const symbols = "`~!@#$%^&*()-_=+[]{}\\|;:'\",.<>/?".split("");
 
-let pwCharType = [];
-let pwLength;
+// let pwCharType = [];
+// let pwLength;
 
 // Functions
 function generatePassword() {
-  configPassword();
-}
-
-// Configure password generation inputs
-function configPassword() {
-  const pwCharTypes = configPasswordCharacters();
+  // Configure password generation inputs
+  // pwCharTypes = configPasswordCharacters();
   const pwLength = configPasswordLength();
-  console.log(pwCharTypes); // testing
-  console.log(pwLength); // testing
+  console.log(pwLength);
+
+  // Generate password character set
+  return "test";
 }
 
 function configPasswordCharacters() {
@@ -31,7 +29,11 @@ function configPasswordCharacters() {
   const includeNumbers = confirm("Include numbers in your password?");
   const includeSymbols = confirm("Include symbols in your password?");
 
-  // Confirm selection of at least 1 character type
+  /* 
+  Confirm selection of at least 1 character type 
+  - if no character types selected: alert user and rerun character type selection prompts
+  - if at least 1 character type selected: return list of character type(s) selected
+  */
   if (
     !includeLettersLower &&
     !includeLettersUpper &&
@@ -62,25 +64,41 @@ function configPasswordCharacters() {
 }
 
 function configPasswordLength() {
-  function improperPwLengthInput() {
+  // Improper password length input alert message
+  // function improperPwLengthInput() {
+  //   alert("Enter a whole number between 8 and 128");
+  //   pwLength = configPasswordLength();
+  // }
+
+  // Input password character length
+  const pwLengthInput = prompt("Enter password length");
+  const isWNum = /^\d+$/.test(pwLengthInput); // Evaluate if input is only digits (whole number)
+
+  /* 
+  Confirm password length input is whole number between 8 and 128 inclusive
+  - if input a whole number: convert to a number and check between [8, 128]
+    - If not between [8, 128]: alert user and rerun password length input prompt
+    - Else return password length
+  - else (input not a whole number): alert user and rerun password length input prompt
+  */
+  // let pwLength;
+  // if (isNum) {
+  //   pwLength = Number(pwLengthInput);
+  //   if (pwLength < 8 || pwLength > 128) {
+  //     improperPwLengthInput();
+  //   }
+  // } else {
+  //   improperPwLengthInput();
+  // }
+
+  /* 
+  Confirm password length input is whole number between [8, 128]
+  - if input is not a whole number or input number is not between [8, 128]: alert user and rerun password length input prompt
+  */
+  let pwLength = Number(pwLengthInput);
+  if (!isWNum || pwLength < 8 || pwLength > 128) {
     alert("Enter a whole number between 8 and 128");
     pwLength = configPasswordLength();
-  }
-
-  // Select character length
-  const passwordLengthInput = prompt("Enter password length");
-  const isnum = /^\d+$/.test(passwordLengthInput); // Evaluate if string is only digits
-
-  let pwLength;
-  if (isnum) {
-    pwLength = Number(passwordLengthInput);
-    if (pwLength >= 8 && pwLength <= 128) {
-      return pwLength;
-    } else {
-      improperPwLengthInput();
-    }
-  } else {
-    improperPwLengthInput();
   }
 
   return pwLength;
@@ -88,7 +106,7 @@ function configPasswordLength() {
 
 // Write password to the #password input
 function writePassword() {
-  const password = "test"; //generatePassword();
+  const password = generatePassword();
   const passwordText = document.querySelector("#password");
 
   passwordText.value = password;
@@ -99,4 +117,4 @@ function writePassword() {
 const generateBtn = document.querySelector("#generate");
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", configPassword);
+generateBtn.addEventListener("click", writePassword);
