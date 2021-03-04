@@ -4,6 +4,13 @@ const lettersUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 const numbers = "012346789".split("");
 const symbols = "`~!@#$%^&*()-_=+[]{}\\|;:'\",.<>/?".split("");
 
+const charLists = {
+  l: "abcdefghijklmnopqrstuvwxyz".split(""),
+  u: "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""),
+  n: "012346789".split(""),
+  s: "`~!@#$%^&*()-_=+[]{}\\|;:'\",.<>/?".split(""),
+};
+
 // let pwCharType = [];
 // let pwLength;
 
@@ -39,7 +46,7 @@ function configPasswordCharacters() {
   /* 
   Confirm selection of at least 1 character type 
   - if no character types selected: alert user and rerun character type selection prompts
-  */
+   */
   if (pwCharTypes.length === 0) {
     alert(
       "Must select at least 1 password character type to generate a password"
@@ -58,7 +65,7 @@ function configPasswordLength() {
   /* 
   Confirm password length input is whole number between [8, 128]
   - if input is not a whole number or input number is not between [8, 128]: alert user and rerun password length input prompt
-  */
+   */
   let pwLength = Number(pwLengthInput);
   if (!isWNum || pwLength < 8 || pwLength > 128) {
     alert("Enter a whole number between 8 and 128");
@@ -72,8 +79,27 @@ function configPasswordLength() {
 function generatePasswordText(pwCharTypes, pwLen) {
   // console.log(pwCharTypes);
   // console.log(shuffleArray(pwCharTypes));
+  let pwText = [];
 
-  return "test";
+  /*  */
+  for (const pwCharType of pwCharTypes) {
+    const rChar = randomChoice(charLists[pwCharType]);
+    pwText.push(rChar);
+  }
+  console.log(pwText); //test
+
+  /*  */
+  for (let c = pwCharTypes.length; c < pwLen; c++) {
+    // const element = array[c];
+    const rCharType = randomChoice(pwCharTypes);
+    const rChar = randomChoice(charLists[rCharType]);
+    pwText.push(rChar);
+  }
+  console.log(pwText); //test
+
+  // Shuffle password character array and return
+  return shuffleArray(pwText).join("");
+  // return "test";
 }
 
 function randomChoice(array) {
@@ -82,7 +108,7 @@ function randomChoice(array) {
 }
 
 function shuffleArray(array) {
-  // Return random shuffle of array
+  // Return random shuffle of array: uses Durstenfeld shuffle (Fisher-Yates) algorithm
   // Credit: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
