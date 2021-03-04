@@ -5,16 +5,21 @@ const numbers = "012346789".split("");
 const symbols = "`~!@#$%^&*()-_=+[]{}\\|;:'\",.<>/?".split("");
 
 // Functions
-function configurePassword() {
-  const includeLettersLower = confirm(
-    "Include lower case letters in your password?"
-  );
-  const includeLettersUpper = confirm(
-    "Include upper case letters in your password?"
-  );
-  const includeNumbers = confirm("Include numbers in your password?");
-  const includeSymbols = confirm("Include symbols in your password?");
+// Configure password generation inputs
+function configPassword() {
+  let includeLettersLower, includeLettersUpper, includeNumbers, includeSymbols;
 
+  configPasswordCharacters();
+}
+
+function configPasswordCharacters() {
+  // Select character types to include
+  includeLettersLower = confirm("Include lower case letters in your password?");
+  includeLettersUpper = confirm("Include upper case letters in your password?");
+  includeNumbers = confirm("Include numbers in your password?");
+  includeSymbols = confirm("Include symbols in your password?");
+
+  // Confirm selection of at least 1 character type
   if (
     !includeLettersLower &&
     !includeLettersUpper &&
@@ -24,7 +29,7 @@ function configurePassword() {
     alert(
       "Must select at least 1 password character type to generate a password."
     );
-    configurePassword();
+    configPasswordCharacters();
   }
 }
 
@@ -41,4 +46,4 @@ function writePassword() {
 const generateBtn = document.querySelector("#generate");
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", configurePassword);
+generateBtn.addEventListener("click", configPassword);
