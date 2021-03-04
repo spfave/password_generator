@@ -1,3 +1,9 @@
+// Set available password characters
+const lettersLower = "abcdefghijklmnopqrstuvwxyz".split("");
+const lettersUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+const numbers = "012346789".split("");
+const symbols = "`~!@#$%^&*()-_=+[]{}\\|;:'\",.<>/?".split("");
+
 // Assignment Code
 const generateBtn = document.querySelector("#generate");
 
