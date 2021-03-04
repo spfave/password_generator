@@ -14,6 +14,18 @@ function configurePassword() {
   );
   const includeNumbers = confirm("Include numbers in your password?");
   const includeSymbols = confirm("Include symbols in your password?");
+
+  if (
+    !includeLettersLower &&
+    !includeLettersUpper &&
+    !includeNumbers &&
+    !includeSymbols
+  ) {
+    alert(
+      "Must select at least 1 password character type to generate a password."
+    );
+    configurePassword();
+  }
 }
 
 // Write password to the #password input
