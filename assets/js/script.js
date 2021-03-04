@@ -10,61 +10,88 @@ const symbols = "`~!@#$%^&*()-_=+[]{}\\|;:'\",.<>/?".split("");
 // Functions
 function generatePassword() {
   // Configure password generation inputs
-  // pwCharTypes = configPasswordCharacters();
-  const pwLength = configPasswordLength();
-  console.log(pwLength);
+  const pwCharTypes = configPasswordCharacters();
+  // const pwLength = configPasswordLength();
+  console.log(pwCharTypes); //test
+  // console.log(pwLength); //test
 
   // Generate password character set
   return "test";
 }
 
+// Select character types to include in password
 function configPasswordCharacters() {
-  // Select character types to include in password
-  const includeLettersLower = confirm(
-    "Include lower case letters in your password?"
-  );
-  const includeLettersUpper = confirm(
-    "Include upper case letters in your password?"
-  );
-  const includeNumbers = confirm("Include numbers in your password?");
-  const includeSymbols = confirm("Include symbols in your password?");
+  const charTypes = [
+    { desc: "lower case letters", symb: "l" },
+    { desc: "upper case letters", symb: "u" },
+    { desc: "numbers", symb: "n" },
+    { desc: "symbols", symb: "s" },
+  ];
+  let pwCharTypes = [];
+
+  for (const charType of charTypes) {
+    const includeCharSet = confirm(`Include ${charType.desc} in password`);
+    if (includeCharSet) {
+      pwCharTypes.push(charType.symb);
+    }
+  }
+
+  /* 
+  Confirm selection of at least 1 character type 
+  - if no character types selected: alert user and rerun character type selection prompts
+  */
+  if (pwCharTypes.length === 0) {
+    alert(
+      "Must select at least 1 password character type to generate a password"
+    );
+    pwCharTypes = configPasswordCharacters();
+  }
+
+  // const includeLettersLower = confirm(
+  //   "Include lower case letters in your password?"
+  // );
+  // const includeLettersUpper = confirm(
+  //   "Include upper case letters in your password?"
+  // );
+  // const includeNumbers = confirm("Include numbers in your password?");
+  // const includeSymbols = confirm("Include symbols in your password?");
 
   /* 
   Confirm selection of at least 1 character type 
   - if no character types selected: alert user and rerun character type selection prompts
   - if at least 1 character type selected: return list of character type(s) selected
   */
-  if (
-    !includeLettersLower &&
-    !includeLettersUpper &&
-    !includeNumbers &&
-    !includeSymbols
-  ) {
-    alert(
-      "Must select at least 1 password character type from prompts to generate a password"
-    );
-    pwCharType = configPasswordCharacters();
-  } else {
-    pwCharType = [];
-    if (includeLettersLower) {
-      pwCharType.push("l");
-    }
-    if (includeLettersUpper) {
-      pwCharType.push("u");
-    }
-    if (includeNumbers) {
-      pwCharType.push("n");
-    }
-    if (includeSymbols) {
-      pwCharType.push("s");
-    }
-  }
+  // if (
+  //   !includeLettersLower &&
+  //   !includeLettersUpper &&
+  //   !includeNumbers &&
+  //   !includeSymbols
+  // ) {
+  //   alert(
+  //     "Must select at least 1 password character type to generate a password"
+  //   );
+  //   pwCharType = configPasswordCharacters();
+  // } else {
+  //   pwCharType = [];
+  //   if (includeLettersLower) {
+  //     pwCharType.push("l");
+  //   }
+  //   if (includeLettersUpper) {
+  //     pwCharType.push("u");
+  //   }
+  //   if (includeNumbers) {
+  //     pwCharType.push("n");
+  //   }
+  //   if (includeSymbols) {
+  //     pwCharType.push("s");
+  //   }
+  // }
 
-  return pwCharType;
+  return pwCharTypes;
 }
 
+// Input password character length
 function configPasswordLength() {
-  // Input password character length
   const pwLengthInput = prompt("Enter password length");
   const isWNum = /^\d+$/.test(pwLengthInput); // Evaluate if input is only digits (whole number)
 
