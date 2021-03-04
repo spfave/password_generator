@@ -70,12 +70,8 @@ function configPasswordLength() {
 
 // generatePasswordText();
 function generatePasswordText(pwCharTypes, pwLen) {
-  console.log(randomChoice(pwCharTypes));
-  console.log(randomChoice(pwCharTypes));
-  console.log(randomChoice(pwCharTypes));
-  console.log(randomChoice(pwCharTypes));
-  console.log(randomChoice(pwCharTypes));
-  console.log(randomChoice(pwCharTypes));
+  // console.log(pwCharTypes);
+  // console.log(shuffleArray(pwCharTypes));
 
   return "test";
 }
@@ -83,6 +79,16 @@ function generatePasswordText(pwCharTypes, pwLen) {
 function randomChoice(array) {
   // Return random choice from input array
   return array[Math.floor(Math.random() * array.length)];
+}
+
+function shuffleArray(array) {
+  // Return random shuffle of array
+  // Credit: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
 
 // Write password to the #password input
