@@ -64,32 +64,9 @@ function configPasswordCharacters() {
 }
 
 function configPasswordLength() {
-  // Improper password length input alert message
-  // function improperPwLengthInput() {
-  //   alert("Enter a whole number between 8 and 128");
-  //   pwLength = configPasswordLength();
-  // }
-
   // Input password character length
   const pwLengthInput = prompt("Enter password length");
   const isWNum = /^\d+$/.test(pwLengthInput); // Evaluate if input is only digits (whole number)
-
-  /* 
-  Confirm password length input is whole number between 8 and 128 inclusive
-  - if input a whole number: convert to a number and check between [8, 128]
-    - If not between [8, 128]: alert user and rerun password length input prompt
-    - Else return password length
-  - else (input not a whole number): alert user and rerun password length input prompt
-  */
-  // let pwLength;
-  // if (isNum) {
-  //   pwLength = Number(pwLengthInput);
-  //   if (pwLength < 8 || pwLength > 128) {
-  //     improperPwLengthInput();
-  //   }
-  // } else {
-  //   improperPwLengthInput();
-  // }
 
   /* 
   Confirm password length input is whole number between [8, 128]
