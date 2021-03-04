@@ -11,12 +11,12 @@ const symbols = "`~!@#$%^&*()-_=+[]{}\\|;:'\",.<>/?".split("");
 function generatePassword() {
   // Configure password generation inputs
   const pwCharTypes = configPasswordCharacters();
-  // const pwLength = configPasswordLength();
-  console.log(pwCharTypes); //test
+  const pwLength = configPasswordLength();
+  // console.log(pwCharTypes); //test
   // console.log(pwLength); //test
 
   // Generate password character set
-  return "test";
+  return generatePasswordText(pwCharTypes, pwLength);
 }
 
 // Select character types to include in password
@@ -66,6 +66,23 @@ function configPasswordLength() {
   }
 
   return pwLength;
+}
+
+// generatePasswordText();
+function generatePasswordText(pwCharTypes, pwLen) {
+  console.log(randomChoice(pwCharTypes));
+  console.log(randomChoice(pwCharTypes));
+  console.log(randomChoice(pwCharTypes));
+  console.log(randomChoice(pwCharTypes));
+  console.log(randomChoice(pwCharTypes));
+  console.log(randomChoice(pwCharTypes));
+
+  return "test";
+}
+
+function randomChoice(array) {
+  // Return random choice from input array
+  return array[Math.floor(Math.random() * array.length)];
 }
 
 // Write password to the #password input
