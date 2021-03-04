@@ -47,46 +47,6 @@ function configPasswordCharacters() {
     pwCharTypes = configPasswordCharacters();
   }
 
-  // const includeLettersLower = confirm(
-  //   "Include lower case letters in your password?"
-  // );
-  // const includeLettersUpper = confirm(
-  //   "Include upper case letters in your password?"
-  // );
-  // const includeNumbers = confirm("Include numbers in your password?");
-  // const includeSymbols = confirm("Include symbols in your password?");
-
-  /* 
-  Confirm selection of at least 1 character type 
-  - if no character types selected: alert user and rerun character type selection prompts
-  - if at least 1 character type selected: return list of character type(s) selected
-  */
-  // if (
-  //   !includeLettersLower &&
-  //   !includeLettersUpper &&
-  //   !includeNumbers &&
-  //   !includeSymbols
-  // ) {
-  //   alert(
-  //     "Must select at least 1 password character type to generate a password"
-  //   );
-  //   pwCharType = configPasswordCharacters();
-  // } else {
-  //   pwCharType = [];
-  //   if (includeLettersLower) {
-  //     pwCharType.push("l");
-  //   }
-  //   if (includeLettersUpper) {
-  //     pwCharType.push("u");
-  //   }
-  //   if (includeNumbers) {
-  //     pwCharType.push("n");
-  //   }
-  //   if (includeSymbols) {
-  //     pwCharType.push("s");
-  //   }
-  // }
-
   return pwCharTypes;
 }
 
