@@ -5,16 +5,19 @@ const numbers = "012346789".split("");
 const symbols = "`~!@#$%^&*()-_=+[]{}\\|;:'\",.<>/?".split("");
 
 let pwCharType = [];
+let pwLength;
 
 // Functions
 // Configure password generation inputs
 function configPassword() {
-  const pwCharTypes = configPasswordCharacters();
-  console.log(pwCharTypes); // testing
+  // const pwCharTypes = configPasswordCharacters();
+  // console.log(pwCharTypes); // testing
+  const pwLength = configPasswordLength();
+  console.log(pwLength); // testing
 }
 
 function configPasswordCharacters() {
-  // Select character types to include
+  // Select character types to include in password
   const includeLettersLower = confirm(
     "Include lower case letters in your password?"
   );
@@ -52,6 +55,31 @@ function configPasswordCharacters() {
   }
 
   return pwCharType;
+}
+
+function configPasswordLength() {
+  function improperPwLengthInput() {
+    alert("Enter a whole number between 8 and 128");
+    pwLength = configPasswordLength();
+  }
+
+  // Select character length
+  const passwordLengthInput = prompt("Enter password length");
+  const isnum = /^\d+$/.test(passwordLengthInput); // Evaluate if string is only digits
+
+  let pwLength;
+  if (isnum) {
+    pwLength = Number(passwordLengthInput);
+    if (pwLength >= 8 && pwLength <= 128) {
+      return pwLength;
+    } else {
+      improperPwLengthInput();
+    }
+  } else {
+    improperPwLengthInput();
+  }
+
+  return pwLength;
 }
 
 // Write password to the #password input
