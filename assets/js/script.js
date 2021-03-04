@@ -8,6 +8,10 @@ let pwCharType = [];
 let pwLength;
 
 // Functions
+function generatePassword() {
+  configPassword();
+}
+
 // Configure password generation inputs
 function configPassword() {
   const pwCharTypes = configPasswordCharacters();
