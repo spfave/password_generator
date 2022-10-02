@@ -122,4 +122,12 @@ function writePassword() {
 // DOM CONTROL
 // Add event listener to generate button
 const generateBtn = document.querySelector("#generate");
-generateBtn.addEventListener("click", writePassword);
+// generateBtn.addEventListener("click", writePassword);
+
+// gitpod test
+generateBtn.addEventListener("click", () => {
+  console.log('console log from gitpod');
+  
+  const h1 = document.getElementsByTagName('h1');
+  h1[0].textContent = 'Gitpod Test'
+});
