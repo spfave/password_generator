@@ -1,9 +1,9 @@
 // Define character list object with array of characters for each character type
 const charLists = {
-  l: "abcdefghijklmnopqrstuvwxyz".split(""), // lowercase letters
-  u: "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""), // uppercase letters
-  n: "012346789".split(""), // numbers
-  s: "`~!@#$%^&*()-_=+[]{}\\|;:'\",.<>/?".split(""), // symbols
+  l: 'abcdefghijklmnopqrstuvwxyz'.split(''), // lowercase letters
+  u: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''), // uppercase letters
+  n: '012346789'.split(''), // numbers
+  s: '`~!@#$%^&*()-_=+[]{}\\|;:\'",.<>/?'.split(''), // symbols
 };
 
 // FUNCTIONS
@@ -19,10 +19,10 @@ function generatePassword() {
 // Select character types to include in password
 function configPasswordCharacters() {
   const charTypes = [
-    { desc: "lower case letters", symb: "l" },
-    { desc: "upper case letters", symb: "u" },
-    { desc: "numbers", symb: "n" },
-    { desc: "symbols", symb: "s" },
+    { desc: 'lower case letters', symb: 'l' },
+    { desc: 'upper case letters', symb: 'u' },
+    { desc: 'numbers', symb: 'n' },
+    { desc: 'symbols', symb: 's' },
   ];
   let pwCharTypes = [];
 
@@ -40,7 +40,7 @@ function configPasswordCharacters() {
    */
   if (pwCharTypes.length === 0) {
     alert(
-      "Must select at least 1 password character type to generate a password"
+      'Must select at least 1 password character type to generate a password'
     );
     pwCharTypes = configPasswordCharacters();
   }
@@ -50,8 +50,8 @@ function configPasswordCharacters() {
 
 // Input password character length
 function configPasswordLength() {
-  // Promp for password length
-  const pwLengthInput = prompt("Enter password length");
+  // Prompt for password length
+  const pwLengthInput = prompt('Enter password length');
   const isWNum = /^\d+$/.test(pwLengthInput); // Evaluate if input is only digits (whole number)
 
   /**
@@ -60,7 +60,7 @@ function configPasswordLength() {
    */
   let pwLength = Number(pwLengthInput);
   if (!isWNum || pwLength < 8 || pwLength > 128) {
-    alert("Enter a whole number between 8 and 128");
+    alert('Enter a whole number between 8 and 128');
     pwLength = configPasswordLength();
   }
 
@@ -91,7 +91,7 @@ function generatePasswordText(pwCharTypes, pwLen) {
   }
 
   // Shuffle password character array and return as joined string
-  return shuffleArray(pwText).join("");
+  return shuffleArray(pwText).join('');
 }
 
 function randomChoice(array) {
@@ -114,12 +114,12 @@ function shuffleArray(array) {
 // Write password to the #password input
 function writePassword() {
   const password = generatePassword();
-  const passwordText = document.querySelector("#password");
+  const passwordText = document.querySelector('#password');
 
   passwordText.value = password;
 }
 
 // DOM CONTROL
 // Add event listener to generate button
-const generateBtn = document.querySelector("#generate");
-generateBtn.addEventListener("click", writePassword);
+const generateBtn = document.querySelector('#generate');
+generateBtn.addEventListener('click', writePassword);
